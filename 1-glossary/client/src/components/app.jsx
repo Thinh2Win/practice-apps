@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import WordsList from './wordsList.jsx';
+import AddWord from './addWord.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Kitty Glossary</h1>
+        <AddWord/>
         <WordsList words={this.state.words}/>
       </div>
     );

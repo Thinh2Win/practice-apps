@@ -47,7 +47,13 @@ let seedWords = () => {
 let getWords = () => {
   return Glossary.find();
 };
+
+let addWord = (jsonObj) => {
+  return new Glossary({word: jsonObj.word, description: jsonObj.description}).save();
+};
+
 module.exports.getWords = getWords;
+module.exports.addWord = addWord;
 
 // 3. Export the models
 // 4. Import the models into any modules that need them
