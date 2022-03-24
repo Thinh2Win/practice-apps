@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import WordsList from './wordsList.jsx';
 import AddWord from './addWord.jsx';
+import Search from './searchWord.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,8 +12,9 @@ class App extends React.Component {
     };
     this.axiosGetRequest = this.axiosGetRequest.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
   }
-  
+
   componentDidMount () {
     this.axiosGetRequest();
   }
@@ -50,10 +52,20 @@ class App extends React.Component {
       })
   };
 
+  handleSearchClick = (searchedWord) => {
+    var filteredWords = this.state.words.filter(word => {
+      if (word.word.toLowerCase().includes(searchedWord)) {
+        return word;
+      }
+    });
+    this.setState({words: filteredWords});
+  };
+
   render() {
     return (
       <div>
         <h1 onClick={this.reSeedFrontEnd}>Kitty Glossary</h1>
+        <Search handleSearchClick={this.handleSearchClick}/>
         <AddWord axiosGetRequest={this.axiosGetRequest}/>
         <WordsList words={this.state.words} handleDeleteClick={this.handleDeleteClick}/>
       </div>
