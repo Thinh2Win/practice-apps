@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
-const {getWords, addWord, deleteWord, seedWords} = require('./db.js');
+const {getWords, addWord, deleteWord, seedWords, editWord} = require('./db.js');
 
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -20,10 +20,7 @@ app.get('/words', (req, res) => {
 
 app.get('/seed', (req, res) => {
   seedWords();
-  res.send('Words Reset')
-    .catch(err => {
-      res.status(400).send(err);
-    });
+  res.send('Words Reset');
 });
 
 app.post('/words/add', (req, res) => {
@@ -43,6 +40,16 @@ app.delete('/words/delete', (req, res) => {
     })
     .catch(err => {
       res.status(401).send(err);
+    });
+});
+
+app.put('/words/change', (req, res) => {
+  editWord(req.body)
+    .then(()=> {
+      res.send('Word Changed');
+    })
+    .catch(err => {
+      res.status(400).send(err);
     });
 });
 

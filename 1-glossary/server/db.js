@@ -19,7 +19,7 @@ mongoose.connect(db,
 let glossarySchema = mongoose.Schema({
   word: {
     type: String,
-    unique: true,
+    unique: true
   },
   description: String,
 });
@@ -56,10 +56,18 @@ let deleteWord = (deleteWord) => {
   return Glossary.deleteOne({word: `${deleteWord}`});
 };
 
+let editWord = (wordEdit) => {
+  let filter = {word: wordEdit.word};
+  let update = {description: wordEdit.description};
+  return Glossary.findOneAndUpdate(filter, update);
+};
+
 module.exports.getWords = getWords;
 module.exports.addWord = addWord;
 module.exports.deleteWord = deleteWord;
 module.exports.seedWords = seedWords;
+module.exports.editWord = editWord;
+
 
 // 3. Export the models
 // 4. Import the models into any modules that need them
