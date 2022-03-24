@@ -37,8 +37,8 @@ let seedWords = () => {
   words.forEach((word) => {
     new Glossary({word: word.word, description: word.description}).save()
       .catch(err => {
-        if (err) {
-          console.log(err);
+        if (err.code !== 11000) {
+          throw err;
         }
       });
   });
@@ -59,6 +59,7 @@ let deleteWord = (deleteWord) => {
 module.exports.getWords = getWords;
 module.exports.addWord = addWord;
 module.exports.deleteWord = deleteWord;
+module.exports.seedWords = seedWords;
 
 // 3. Export the models
 // 4. Import the models into any modules that need them

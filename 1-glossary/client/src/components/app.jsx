@@ -12,6 +12,7 @@ class App extends React.Component {
     this.axiosGetRequest = this.axiosGetRequest.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
+  
   componentDidMount () {
     this.axiosGetRequest();
   }
@@ -38,10 +39,21 @@ class App extends React.Component {
       });
   };
 
+  reSeedFrontEnd = () => {
+    axios.get('/seed')
+      .then(response => {
+        console.log(response);
+        this.axiosGetRequest();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  };
+
   render() {
     return (
       <div>
-        <h1>Kitty Glossary</h1>
+        <h1 onClick={this.reSeedFrontEnd}>Kitty Glossary</h1>
         <AddWord axiosGetRequest={this.axiosGetRequest}/>
         <WordsList words={this.state.words} handleDeleteClick={this.handleDeleteClick}/>
       </div>
