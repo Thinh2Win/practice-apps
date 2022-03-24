@@ -27,7 +27,15 @@ class App extends React.Component {
   }
 
   handleDeleteClick = (wordName) => {
-    console.log(wordName);
+    var deletedWord = {data: {word: wordName}};
+    axios.delete('/words/delete', deletedWord)
+      .then(response => {
+        console.log(response);
+        this.axiosGetRequest();
+      })
+      .catch(err => {
+        console.log(err)
+      });
   };
 
   render() {

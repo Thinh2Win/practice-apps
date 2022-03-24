@@ -9,7 +9,7 @@ class AddWord extends React.Component {
       descriptionText: '',
     }
   }
-  
+
   handleOnChangeWord = (e) => {
     let holder = e.target.value;
     this.setState({wordText: holder})
@@ -26,7 +26,6 @@ class AddWord extends React.Component {
       word: this.state.wordText,
       description: this.state.descriptionText,
     }
-    console.log(addedWord);
     axios.post('/words/add', addedWord)
       .then(response => {
         console.log(response);

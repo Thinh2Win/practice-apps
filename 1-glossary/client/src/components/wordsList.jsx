@@ -10,7 +10,9 @@ var WordsDisplay = (props) => (
   <div>
     <h3>Word: {props.wordObj.word}</h3>
     <p>Definition: {props.wordObj.description}</p>
-    <button onClick={() => {props.handleDeleteClick(props.wordObj.word)}}>Delete Word</button>
+    <button onClick={() => {props.handleDeleteClick(props.wordObj.word)}}>
+      Delete Word
+    </button>
   </div>
 )
 
