@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 class AddWord extends React.Component {
   constructor(props){
     super(props);
@@ -8,6 +9,7 @@ class AddWord extends React.Component {
       descriptionText: '',
     }
   }
+  
   handleOnChangeWord = (e) => {
     let holder = e.target.value;
     this.setState({wordText: holder})
@@ -28,6 +30,7 @@ class AddWord extends React.Component {
     axios.post('/words/add', addedWord)
       .then(response => {
         console.log(response);
+        this.props.axiosGetRequest();
       })
       .catch(err => {
         console.log(err);

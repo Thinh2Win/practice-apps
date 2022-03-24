@@ -52,8 +52,13 @@ let addWord = (jsonObj) => {
   return new Glossary({word: jsonObj.word, description: jsonObj.description}).save();
 };
 
+let deleteWord = (deleteWord) => {
+  return Glossary.deleteOne({word: `${deleteWord}`});
+};
+
 module.exports.getWords = getWords;
 module.exports.addWord = addWord;
+module.exports.deleteWord = deleteWord;
 
 // 3. Export the models
 // 4. Import the models into any modules that need them
