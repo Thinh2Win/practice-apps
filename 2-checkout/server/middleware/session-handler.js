@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = (req, res, next) => {
   /**
@@ -7,11 +7,11 @@ module.exports = (req, res, next) => {
    *
    */
 
-  let cookieString = req.get("Cookie") || "";
+  let cookieString = req.get('Cookie') || '';
 
-  parsedCookies = cookieString.split("; ").reduce((cookies, cookie) => {
+  parsedCookies = cookieString.split('; ').reduce((cookies, cookie) => {
     if (cookie.length) {
-      let index = cookie.indexOf("=");
+      let index = cookie.indexOf('=');
       let key = cookie.slice(0, index);
       let token = cookie.slice(index + 1);
       cookies[key] = token;
@@ -23,7 +23,7 @@ module.exports = (req, res, next) => {
     req.session_id = parsedCookies.s_id;
   } else {
     req.session_id = uuidv4();
-    res.cookie("s_id", req.session_id);
+    res.cookie('s_id', req.session_id);
   }
 
   next();

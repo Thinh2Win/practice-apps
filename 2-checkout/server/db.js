@@ -1,6 +1,6 @@
-const mysql = require("mysql2");
-const Promise = require("bluebird");
-
+const mysql = require('mysql2');
+const Promise = require('bluebird');
+require('dotenv').config();
 // Configure process.env variables in ../.env
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -16,7 +16,7 @@ db.connectAsync()
   .then(() =>
     // Expand this table definition as needed:
     db.queryAsync(
-      "CREATE TABLE IF NOT EXISTS responses (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY)"
+      'CREATE TABLE IF NOT EXISTS responses (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY)'
     )
   )
   .catch((err) => console.log(err));
