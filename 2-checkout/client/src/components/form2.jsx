@@ -22,8 +22,22 @@ class Form2 extends React.Component {
   };
 
   handleForm2Click = () => {
-    //axios.put
-    this.setState({next: !this.state.next})
+    let shippingInfo = {
+      line1: this.state.line1,
+      line2: this.state.line2,
+      city: this.state.city,
+      state: this.state.state,
+      zipCode: this.state.zipCode,
+      phoneNumber: this.state.phoneNumber
+    };
+    console.log(shippingInfo);
+    axios.put('/user/shipping', shippingInfo)
+      .then(() => {
+        this.setState({next: !this.state.next})
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render () {
