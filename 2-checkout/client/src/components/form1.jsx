@@ -1,5 +1,6 @@
 import React from 'react';
 import Form2 from './form2.jsx';
+import axios from 'axios';
 
 class Form1 extends React.Component {
   constructor (props) {
@@ -17,8 +18,18 @@ class Form1 extends React.Component {
   };
 
   handleForm1Click = () => {
-    //axios.post('/')
-    this.setState({next: !this.state.next})
+    var userInfo = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password
+    }
+    axios.post('/user', userInfo)
+      .then(()=> {
+        this.setState({next: !this.state.next})
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render () {
