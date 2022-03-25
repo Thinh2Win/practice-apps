@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 
 // -------------> Request Handelers <------------- //
-
+//Form1 userInfo
 app.post('/user', (req, res) => {
   db.queryAsync(`INSERT INTO responses (name, email, password)
   Values ('${req.body.name}', '${req.body.email}', '${req.body.password}')`
@@ -34,6 +34,23 @@ app.post('/user', (req, res) => {
     });
 });
 
+//Form2 ShippingInfo
+app.put('/user/shipping', (req, res) => {
+  let data = req.body;
+  db.queryAsync(`UPDATE responses SET
+    line1='${data.line1}',
+    line2='${data.line2}',
+    city='${data.city}',
+    state='${data.state}',
+    zipCode='${data.zipCode}',
+    phoneNumber='${data.phoneNumber}'
+  `) .then(() => {
+    res.send(req.body);
+  })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+});
 
 
 app.listen(process.env.PORT);
