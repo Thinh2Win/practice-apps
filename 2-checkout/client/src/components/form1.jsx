@@ -25,7 +25,7 @@ class Form1 extends React.Component {
     return (
       <div>
         {this.state.next ? (
-          <Form2 />
+          <Form2 returnHome={this.props.returnHome}/>
           ) : (
           <div>
           <h1>Please Enter Account Info</h1>

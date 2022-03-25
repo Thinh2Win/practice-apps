@@ -28,11 +28,11 @@ class Form2 extends React.Component {
     return (
       <div>
         {this.state.next ? (
-          <Form3/>
+          <Form3 returnHome={this.props.returnHome}/>
             ) : (
           <div>
           <h1>Please Enter Shipping Info</h1>
-          
+
           <div className='Address'>
           <input name='line1' placeholder='line1' onChange={() => {this.handleForm2Change(event)}}></input>
           <input name='line2' placeholder='line2' onChange={() => {this.handleForm2Change(event)}}></input>

@@ -12,12 +12,11 @@ class App extends React.Component {
 
   changeOnClick = (e) => {
     let btnName = e.target.name;
-    console.log(btnName);
     this.setState({[`${btnName}`]: !this.state.checkout})
   }
 
   returnHome = () => {
-    this.setState({checkout: true});
+    this.setState({checkout: !this.state.checkout});
   };
 
   render () {
@@ -25,7 +24,7 @@ class App extends React.Component {
       <div>
 
         {this.state.checkout ?
-          (<Form1/>) : (
+          (<Form1 returnHome={this.returnHome}/>) : (
             <div>
             <h1>Home Page</h1>
             <button name='checkout' onClick={()=>{this.changeOnClick(event)}}>checkout</button>
@@ -36,7 +35,7 @@ class App extends React.Component {
         <p>
           <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
         </p>
-        
+
       </div>
     )
   }
