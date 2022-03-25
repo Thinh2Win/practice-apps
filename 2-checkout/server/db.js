@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 const Promise = require('bluebird');
-require('dotenv').config();
 // Configure process.env variables in ../.env
+require('dotenv').config();
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -24,18 +24,18 @@ db.connectAsync()
         db.queryAsync(
           `CREATE TABLE IF NOT EXISTS responses (
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(25) NOT NULL,
-            email VARCHAR(50) NOT NULL,
-            password VARCHAR(50) NOT NULL,
-            line1 VARCHAR(50) NOT NULL,
-            line2 VARCHAR(50) NOT NULL,
-            city VARCHAR(50) NOT NULL,
-            state VARCHAR(50) NOT NULL,
-            zipCode VARCHAR(50) NOT NULL,
-            creditCard INT(16) NOT NULL,
-            expDate INT(4) NOT NULL,
-            cvv INT(3) NOT NULL,
-            billingZipCode INT(5) NOT NULL
+            name VARCHAR(25),
+            email VARCHAR(50),
+            password VARCHAR(50),
+            line1 VARCHAR(50),
+            line2 VARCHAR(50),
+            city VARCHAR(50),
+            state VARCHAR(50),
+            zipCode VARCHAR(50),
+            creditCard INT(16),
+            expDate INT(4),
+            cvv INT(3),
+            billingZipCode INT(5)
           )`
         )
       )

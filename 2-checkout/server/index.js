@@ -18,14 +18,23 @@ app.use(logger);
 
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.json());
 
-/****
- *
- *
- * Other routes here....
- *
- *
- */
+// -------------> Request Handelers <------------- //
+
+app.post('/user', (req, res) => {
+  db.queryAsync(`INSERT INTO responses (name, email, password)
+  Values ('${req.body.name}', '${req.body.email}', '${req.body.password}')`
+  )
+    .then(()=> {
+      res.send(req.body);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+});
+
+
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
