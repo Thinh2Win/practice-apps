@@ -34,7 +34,7 @@ app.post('/user', (req, res) => {
     });
 });
 
-//Form2 ShippingInfo
+//Form2 Shipping Info
 app.put('/user/shipping', (req, res) => {
   let data = req.body;
   db.queryAsync(`UPDATE responses SET
@@ -52,6 +52,21 @@ app.put('/user/shipping', (req, res) => {
     });
 });
 
+//Form3 Credit Info
+app.put('/user/payment', (req, res) => {
+  let data = req.body;
+  db.queryAsync(`UPDATE responses SET
+    creditCard='${data.creditCard}',
+    expDate='${data.expDate}',
+    cvv='${data.cvv}',
+    billingZipCode='${data.billingZipCode}'
+  `).then(() => {
+    res.send(req.body);
+  })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+});
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
