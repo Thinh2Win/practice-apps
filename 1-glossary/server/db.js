@@ -56,7 +56,7 @@ let deleteWord = (deleteWord) => {
   return Glossary.deleteOne({word: `${deleteWord}`});
 };
 
-let editWord = (wordEdit) => {
+exports.editWord = (wordEdit) => {
   let filter = {word: wordEdit.word};
   let update = {description: wordEdit.description};
   return Glossary.findOneAndUpdate(filter, update);
@@ -66,7 +66,6 @@ module.exports.getWords = getWords;
 module.exports.addWord = addWord;
 module.exports.deleteWord = deleteWord;
 module.exports.seedWords = seedWords;
-module.exports.editWord = editWord;
 
 
 // 3. Export the models
