@@ -22,8 +22,8 @@ class Form3 extends React.Component {
       creditCard: this.state.creditCard,
       expDate: this.state.expDate,
       cvv: this.state.cvv,
-      billingZipCode:this.state.billingZipCode
-    }
+      billingZipCode: this.state.billingZipCode
+    };
     axios.put('/user/payment', paymentInfo)
       .then(() => {
         this.setState({next: !this.state.next})
@@ -39,7 +39,7 @@ class Form3 extends React.Component {
         {this.state.next ? (
           <FinalForm returnHome={this.props.returnHome}/>
           ) : (
-            <div>
+            <div className='form'>
               <h1>Please Enter Payment Info</h1>
               <input type='text' name='creditCard' placeholder= 'credit card number' onChange={() => {this.handleForm3Change(event)}}/>
               <input type='text' name='expDate' placeholder= 'exp date' onChange={() => {this.handleForm3Change(event)}}/>

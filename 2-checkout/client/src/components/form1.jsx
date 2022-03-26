@@ -38,7 +38,7 @@ class Form1 extends React.Component {
         {this.state.next ? (
           <Form2 returnHome={this.props.returnHome}/>
           ) : (
-          <div>
+          <div className='form'>
           <h1>Please Enter Account Info</h1>
           <input type='text' placeholder='name' onChange={()=> {this.handleForm1Change(event)}}/>
           <input type='text' placeholder='email' onChange={() => {this.handleForm1Change(event)}}/>

@@ -48,7 +48,7 @@ class Form2 extends React.Component {
           <div>
           <h1>Please Enter Shipping Info</h1>
 
-          <div className='Address'>
+          <div className='form'>
           <input name='line1' placeholder='line1' onChange={() => {this.handleForm2Change(event)}}></input>
           <input name='line2' placeholder='line2' onChange={() => {this.handleForm2Change(event)}}></input>
           <input name='city' placeholder='city' onChange={() => {this.handleForm2Change(event)}}></input>

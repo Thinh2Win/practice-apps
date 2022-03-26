@@ -1,30 +1,41 @@
 import React from 'react';
+import axios from 'axios';
 
 class FinalForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      userInfo: {},
     }
   }
 
-  getAllInfo = () => {
-    //axios.get('/user/info)
-    // get all user info and display
+  componentDidMount() {
+    axios.get('/user/summary')
+      .then(summary => {
+        this.setState({userInfo: summary.data});
+      });
   }
+
+
+
+
   render () {
+    var info = [];
+    for (let keys in this.state.userInfo) {
+      info.push(<span> {keys}: {this.state.userInfo[keys]}</span>)
+    }
+
     return (
       <div>
-        <UserDisplay/>
+        <h4>is this info correct?</h4>
+        <div className='form'>
+          {info}
+        </div>
         <button onClick={() => {this.props.returnHome()}}>Purchace</button>
       </div>
     )
   }
 }
 
-var UserDisplay = (props) => (
-  <div>
-    hello this is the user display
-  </div>
-)
 export default FinalForm;
+

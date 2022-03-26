@@ -55,14 +55,25 @@ app.put('/user/shipping', (req, res) => {
 //Form3 Credit Info
 app.put('/user/payment', (req, res) => {
   let data = req.body;
+  console.log(data.creditCard);
   db.queryAsync(`UPDATE responses SET
     creditCard='${data.creditCard}',
     expDate='${data.expDate}',
     cvv='${data.cvv}',
     billingZipCode='${data.billingZipCode}'
-  `).then(() => {
+  `) .then(() => {
     res.send('credit payment successful');
   })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+});
+//Get All Info
+app.get('/user/summary', (req, res) => {
+  db.queryAsync('SELECT * FROM responses')
+    .then(data => {
+      res.send(data[0][0]);
+    })
     .catch(err => {
       res.status(400).send(err);
     });
