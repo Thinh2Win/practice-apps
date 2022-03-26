@@ -30,7 +30,6 @@ class Form2 extends React.Component {
       zipCode: this.state.zipCode,
       phoneNumber: this.state.phoneNumber
     };
-    console.log(shippingInfo);
     axios.put('/user/shipping', shippingInfo)
       .then(() => {
         this.setState({next: !this.state.next})

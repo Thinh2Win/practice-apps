@@ -1,5 +1,6 @@
 import React from 'react';
 import FinalForm from './finalForm.jsx';
+import axios from 'axios';
 
 class Form3 extends React.Component {
   constructor (props) {
@@ -17,7 +18,19 @@ class Form3 extends React.Component {
   };
 
   handleForm3Click = () => {
-    this.setState({next: !this.state.next})
+    let paymentInfo = {
+      creditCard: this.state.creditCard,
+      expDate: this.state.expDate,
+      cvv: this.state.cvv,
+      billingZipCode:this.state.billingZipCode
+    }
+    axios.put('/user/payment', paymentInfo)
+      .then(() => {
+        this.setState({next: !this.state.next})
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render () {

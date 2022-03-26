@@ -45,7 +45,7 @@ app.put('/user/shipping', (req, res) => {
     zipCode='${data.zipCode}',
     phoneNumber='${data.phoneNumber}'
   `) .then(() => {
-    res.send(req.body);
+    res.send('shipping info saved');
   })
     .catch(err => {
       res.status(400).send(err);
@@ -61,7 +61,7 @@ app.put('/user/payment', (req, res) => {
     cvv='${data.cvv}',
     billingZipCode='${data.billingZipCode}'
   `).then(() => {
-    res.send(req.body);
+    res.send('credit payment successful');
   })
     .catch(err => {
       res.status(400).send(err);
